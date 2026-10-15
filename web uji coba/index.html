@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Happy Anniversary</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --rose:#ff6b8f;
+    --rose-soft:#ffc2d1;
+    --gold:#f4c98a;
+    --ink:#fff0f4;
+    --bg1:#2b0a22;
+    --bg2:#5a1238;
+    --bg3:#8a1f4b;
+    --glass:rgba(255,255,255,.08);
+    --glass-border:rgba(255,255,255,.18);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Poppins',system-ui,sans-serif;
+    color:var(--ink);
+    background:linear-gradient(160deg,var(--bg1),var(--bg2) 55%,var(--bg3));
+    background-attachment:fixed;
+    line-height:1.7;
+    overflow-x:hidden;
+  }
+  #bg{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
+  main{position:relative;z-index:1}
+  section{padding:80px 20px;max-width:900px;margin:0 auto}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    min-height:100vh;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;text-align:center;
+  }
+  .eyebrow{letter-spacing:.35em;text-transform:uppercase;font-size:.8rem;color:var(--gold);margin-bottom:18px}
+  .hero h1{
+    font-family:'Dancing Script',cursive;
+    font-size:clamp(3.4rem,12vw,7.5rem);
+    line-height:1.05;
+    background:linear-gradient(90deg,var(--rose-soft),var(--gold),var(--rose));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    filter:drop-shadow(0 6px 24px rgba(255,107,143,.35));
+  }
+  .names{
+    font-family:'Playfair Display',serif;
+    font-size:clamp(1.3rem,4.5vw,2.2rem);
+    margin-top:22px;
+  }
+  .names .amp{color:var(--rose);display:inline-block;animation:beat 1.4s infinite}
+  .sub{margin-top:14px;font-weight:300;opacity:.85;max-width:520px}
+  .scroll-hint{
+    margin-top:48px;font-size:.85rem;opacity:.7;
+    animation:float 2.2s ease-in-out infinite;
+  }
+  @keyframes beat{0%,100%{transform:scale(1)}50%{transform:scale(1.3)}}
+  @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
+
+  /* ---------- JUDUL SECTION ---------- */
+  h2{
+    font-family:'Playfair Display',serif;
+    font-size:clamp(1.6rem,5vw,2.4rem);
+    text-align:center;margin-bottom:10px;
+  }
+  .lead{text-align:center;font-weight:300;opacity:.85;margin-bottom:36px}
+
+  /* ---------- COUNTER ---------- */
+  .counter{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:14px;
+  }
+  @media(min-width:640px){.counter{grid-template-columns:repeat(6,1fr)}}
+  .box{
+    background:var(--glass);border:1px solid var(--glass-border);
+    backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+    border-radius:18px;padding:18px 8px;text-align:center;
+  }
+  .box b{display:block;font-family:'Playfair Display',serif;font-size:2rem;color:var(--gold)}
+  .box span{font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;opacity:.8}
+
+  /* ---------- TIMELINE ---------- */
+  .timeline{position:relative;margin-left:14px;padding-left:28px;border-left:2px dashed var(--rose-soft)}
+  .moment{
+    position:relative;margin-bottom:28px;padding:20px 22px;
+    background:var(--glass);border:1px solid var(--glass-border);
+    border-radius:18px;
+    opacity:0;transform:translateY(24px);
+    transition:opacity .7s ease,transform .7s ease;
+  }
+  .moment.show{opacity:1;transform:none}
+  .moment::before{
+    content:"♥";position:absolute;left:-43px;top:18px;
+    width:28px;height:28px;border-radius:50%;
+    background:var(--rose);color:#fff;font-size:.8rem;
+    display:grid;place-items:center;
+    box-shadow:0 0 0 5px rgba(255,107,143,.25);
+  }
+  .moment time{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+  .moment h3{font-family:'Playfair Display',serif;font-size:1.25rem;margin:4px 0}
+  .moment p{font-weight:300;opacity:.9}
+
+  /* ---------- SURAT ---------- */
+  .letter-wrap{text-align:center}
+  .btn{
+    cursor:pointer;border:0;border-radius:999px;
+    padding:14px 34px;font:500 1rem 'Poppins',sans-serif;color:#fff;
+    background:linear-gradient(90deg,var(--rose),#ff3d77);
+    box-shadow:0 10px 30px rgba(255,61,119,.4);
+    transition:transform .2s,box-shadow .2s;
+  }
+  .btn:hover{transform:translateY(-2px);box-shadow:0 14px 34px rgba(255,61,119,.5)}
+  .btn:active{transform:scale(.97)}
+  .letter{
+    max-height:0;overflow:hidden;opacity:0;
+    transition:max-height 1s ease,opacity .8s ease,margin .8s ease;
+  }
+  .letter.open{max-height:1400px;opacity:1;margin-top:34px}
+  .paper{
+    text-align:left;background:#fff7f1;color:#4a2a2a;
+    border-radius:14px;padding:34px 30px;
+    box-shadow:0 20px 50px rgba(0,0,0,.35);
+    font-family:'Playfair Display',serif;font-size:1.05rem;
+  }
+  .paper p{margin-bottom:14px}
+  .paper .sign{font-family:'Dancing Script',cursive;font-size:1.8rem;color:#c2285a;margin-top:18px}
+
+  footer{position:relative;z-index:1;text-align:center;padding:50px 20px 70px;opacity:.75;font-weight:300}
+
+  /* ---------- CONFETTI HATI ---------- */
+  .fly{
+    position:fixed;top:-30px;z-index:5;pointer-events:none;
+    animation:fall linear forwards;
+  }
+  @keyframes fall{
+    to{transform:translateY(110vh) rotate(360deg);opacity:.2}
+  }
+
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important}
+    .moment{opacity:1;transform:none}
+  }
+</style>
+</head>
+<body>
+<canvas id="bg"></canvas>
+
+<main>
+  <!-- HERO -->
+  <section class="hero">
+    <p class="eyebrow" id="eyebrow">Selamat Anniversary Sayang</p>
+    <h1>Happy Anniversary</h1>
+    <p class="names"><span id="name1"></span> <span class="amp">♥</span> <span id="name2"></span></p>
+    <p class="sub" id="subtitle"></p>
+    <button class="btn" id="confettiBtn" style="margin-top:30px">Klik untuk kejutan 🎉</button>
+    <p class="scroll-hint">Scroll ke bawah ↓</p>
+  </section>
+
+  <!-- COUNTER -->
+  <section>
+    <h2>Kita Sudah Bersama Selama</h2>
+    <p class="lead">Dan hitungannya terus bertambah setiap detik.</p>
+    <div class="counter" id="counter">
+      <div class="box"><b id="c-y">0</b><span>Tahun</span></div>
+      <div class="box"><b id="c-mo">0</b><span>Bulan</span></div>
+      <div class="box"><b id="c-d">0</b><span>Hari</span></div>
+      <div class="box"><b id="c-h">0</b><span>Jam</span></div>
+      <div class="box"><b id="c-mi">0</b><span>Menit</span></div>
+      <div class="box"><b id="c-s">0</b><span>Detik</span></div>
+    </div>
+  </section>
+
+  <!-- TIMELINE -->
+  <section>
+    <h2>Perjalanan Kita</h2>
+    <p class="lead">Beberapa momen yang selalu ingin diingat.</p>
+    <div class="timeline" id="timeline"></div>
+  </section>
+
+  <!-- SURAT -->
+  <section class="letter-wrap">
+    <h2>Ada Surat untukmu</h2>
+    <p class="lead">Buka kalau sudah siap ya 💌</p>
+    <button class="btn" id="letterBtn">Buka Surat</button>
+    <div class="letter" id="letter">
+      <div class="paper" id="paper"></div>
+    </div>
+  </section>
+</main>
+
+<footer>Dibuat dengan ♥ untuk <span id="footName"></span></footer>
+
+<script>
+/* =====================================================
+   EDIT BAGIAN INI SAJA UNTUK MENGUBAH ISI HALAMAN
+   ===================================================== */
+const CONFIG = {
+  name2: "princess",
+  // Tanggal jadian (format: TAHUN-BULAN-TANGGAL, jam opsional)
+  startDate: "2023-02-14T19:00:00",
+  subtitle: "Terima kasih sudah menjadi tempat pulang terbaikku.",
+
+  moments: [
+    { date: "14 Februari 2026", title: "Hari Pertama Kita", text: "Hari ketika semuanya dimulai. Aku masih ingat betapa gugupnya kita berdua." },
+    { date: "Liburan Pertama",  title: "Petualangan Bersama", text: "Perjalanan pertama yang penuh tawa, tersesat, dan kenangan yang tidak akan pernah terganti." },
+    { date: "Hari yang Berat",  title: "Saling Menguatkan", text: "Tidak semua hari mudah, tapi kita selalu memilih untuk bertahan dan tumbuh bersama." },
+    { date: "Hari Ini",         title: "Masih Jatuh Cinta", text: "Setiap hari bersamamu tetap terasa seperti hadiah. Semoga kita terus begini, selamanya." }
+  ],
+
+  letter: [
+    "Sayang,",
+    "Hari ini aku ingin bilang terima kasih. Terima kasih sudah sabar, sudah tertawa bersamaku di hari yang baik, dan tetap tinggal di hari yang tidak baik.",
+    "Aku tidak butuh hal yang megah. Cukup kamu di sampingku, dan semuanya terasa cukup.",
+    "Selamat hari jadi. Semoga tahun-tahun ke depan kita isi dengan lebih banyak tawa, lebih banyak cerita, dan lebih banyak kita."
+  ],
+  signature: "Yang selalu menyayangimu ♥"
+};
+
+/* =====================================================
+   KODE PROGRAM (tidak perlu diubah)
+   ===================================================== */
+const $ = id => document.getElementById(id);
+
+// Teks
+$("name1").textContent = CONFIG.name1;
+$("name2").textContent = CONFIG.name2;
+$("footName").textContent = CONFIG.name2;
+$("subtitle").textContent = CONFIG.subtitle;
+document.title = `Happy Anniversary ${CONFIG.name1} & ${CONFIG.name2}`;
+
+// Timeline
+$("timeline").innerHTML = CONFIG.moments.map(m => `
+  <article class="moment">
+    <time>${m.date}</time>
+    <h3>${m.title}</h3>
+    <p>${m.text}</p>
+  </article>`).join("");
+
+// Surat
+$("paper").innerHTML =
+  CONFIG.letter.map(p => `<p>${p}</p>`).join("") +
+  `<p class="sign">${CONFIG.signature}</p>`;
+
+// Munculkan timeline saat di-scroll
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("show"); io.unobserve(e.target); } });
+}, { threshold: .2 });
+document.querySelectorAll(".moment").forEach(el => io.observe(el));
+
+// Penghitung waktu bersama
+const start = new Date(CONFIG.startDate);
+function elapsed(from, to) {
+  if (to < from) to = from;
+  let s  = to.getSeconds() - from.getSeconds();
+  let mi = to.getMinutes() - from.getMinutes();
+  let h  = to.getHours()   - from.getHours();
+  let d  = to.getDate()    - from.getDate();
+  let mo = to.getMonth()   - from.getMonth();
+  let y  = to.getFullYear() - from.getFullYear();
+  if (s  < 0) { s  += 60; mi--; }
+  if (mi < 0) { mi += 60; h--; }
+  if (h  < 0) { h  += 24; d--; }
+  if (d  < 0) { d  += new Date(to.getFullYear(), to.getMonth(), 0).getDate(); mo--; }
+  if (mo < 0) { mo += 12; y--; }
+  return { y, mo, d, h, mi, s };
+}
+function tick() {
+  const t = elapsed(start, new Date());
+  $("c-y").textContent  = t.y;
+  $("c-mo").textContent = t.mo;
+  $("c-d").textContent  = t.d;
+  $("c-h").textContent  = String(t.h).padStart(2, "0");
+  $("c-mi").textContent = String(t.mi).padStart(2, "0");
+  $("c-s").textContent  = String(t.s).padStart(2, "0");
+}
+tick();
+setInterval(tick, 1000);
+
+// Buka / tutup surat
+$("letterBtn").addEventListener("click", () => {
+  const open = $("letter").classList.toggle("open");
+  $("letterBtn").textContent = open ? "Tutup Surat" : "Buka Surat";
+  if (open) {
+    burst(24);
+    setTimeout(() => $("letter").scrollIntoView({ behavior: "smooth", block: "center" }), 300);
+  }
+});
+
+// Hujan hati saat tombol diklik
+const EMOJIS = ["❤️", "💖", "💕", "💗", "🌹", "✨"];
+function burst(n = 40) {
+  for (let i = 0; i < n; i++) {
+    const el = document.createElement("span");
+    el.className = "fly";
+    el.textContent = EMOJIS[Math.floor(Math.random() * EMOJIS.length)];
+    el.style.left = Math.random() * 100 + "vw";
+    el.style.fontSize = 16 + Math.random() * 26 + "px";
+    el.style.animationDuration = 3 + Math.random() * 3 + "s";
+    el.style.animationDelay = Math.random() * 0.8 + "s";
+    document.body.appendChild(el);
+    el.addEventListener("animationend", () => el.remove());
+  }
+}
+$("confettiBtn").addEventListener("click", () => burst(50));
+
+// Hati melayang di latar belakang
+const cv = $("bg"), ctx = cv.getContext("2d");
+const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+let W, H, hearts = [];
+function resize() { W = cv.width = innerWidth; H = cv.height = innerHeight; }
+addEventListener("resize", resize);
+resize();
+
+function makeHeart(initial) {
+  return {
+    x: Math.random() * W,
+    y: initial ? Math.random() * H : H + 30,
+    s: 6 + Math.random() * 14,
+    v: 0.25 + Math.random() * 0.7,
+    sway: Math.random() * Math.PI * 2,
+    rot: (Math.random() - .5) * .6,
+    a: 0.12 + Math.random() * 0.28,
+    c: ["#ff6b8f", "#ffc2d1", "#f4c98a", "#ff3d77"][Math.floor(Math.random() * 4)]
+  };
+}
+const COUNT = Math.min(45, Math.floor(innerWidth / 28));
+for (let i = 0; i < COUNT; i++) hearts.push(makeHeart(true));
+
+function drawHeart(h) {
+  ctx.save();
+  ctx.translate(h.x, h.y);
+  ctx.rotate(h.rot);
+  ctx.scale(h.s, h.s);
+  ctx.globalAlpha = h.a;
+  ctx.fillStyle = h.c;
+  ctx.beginPath();
+  ctx.moveTo(0, -0.5);
+  ctx.bezierCurveTo(0.5, -1.1, 1.4, -0.3, 0, 0.9);
+  ctx.bezierCurveTo(-1.4, -0.3, -0.5, -1.1, 0, -0.5);
+  ctx.fill();
+  ctx.restore();
+}
+function frame() {
+  ctx.clearRect(0, 0, W, H);
+  hearts.forEach((h, i) => {
+    h.y -= h.v;
+    h.sway += 0.015;
+    h.x += Math.sin(h.sway) * 0.4;
+    if (h.y < -30) hearts[i] = makeHeart(false);
+    drawHeart(h);
+  });
+  if (!reduce) requestAnimationFrame(frame);
+}
+frame();
+</script>
+</body>
+</html>
